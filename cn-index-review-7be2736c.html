@@ -1,0 +1,265 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.5">
+    <title>稳定与起点 · 开云</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: system-ui, -apple-system, 'Segoe UI', Roboto, 'Helvetica Neue', sans-serif;
+            background: linear-gradient(145deg, #fee1c5 0%, #ffd6b0 40%, #fccb9c 100%);
+            min-height: 100vh;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            padding: 2rem 1.2rem;
+            line-height: 1.7;
+            color: #2e241e;
+        }
+
+        .page-card {
+            max-width: 780px;
+            width: 100%;
+            background: rgba(255, 247, 240, 0.92);
+            backdrop-filter: blur(6px);
+            -webkit-backdrop-filter: blur(6px);
+            border-radius: 48px 24px 48px 24px;
+            box-shadow: 0 20px 40px -12px rgba(100, 60, 30, 0.25), 0 6px 12px rgba(0,0,0,0.02);
+            padding: 2.5rem 2.2rem;
+            transition: all 0.2s ease;
+            border: 1px solid rgba(255, 220, 180, 0.4);
+        }
+
+        @media (max-width: 480px) {
+            .page-card {
+                padding: 2rem 1.4rem;
+                border-radius: 32px 16px 32px 16px;
+            }
+        }
+
+        /* 标题 */
+        .article-header {
+            margin-bottom: 1.8rem;
+            border-left: 6px solid #d9986a;
+            padding-left: 1rem;
+        }
+
+        .article-header h1 {
+            font-size: 2.2rem;
+            font-weight: 500;
+            letter-spacing: 1px;
+            color: #3a281f;
+            line-height: 1.2;
+            margin-bottom: 0.4rem;
+        }
+
+        .article-header .sub {
+            font-size: 1rem;
+            color: #7b5d47;
+            font-weight: 380;
+            background: rgba(215, 165, 120, 0.15);
+            display: inline-block;
+            padding: 0.2rem 1rem 0.2rem 0.8rem;
+            border-radius: 40px;
+            border-left: 2px solid #b9835b;
+        }
+
+        /* 导语 */
+        .intro {
+            background: rgba(236, 208, 180, 0.2);
+            padding: 1.4rem 1.6rem;
+            border-radius: 36px 14px 36px 14px;
+            margin: 1.8rem 0 2rem 0;
+            font-size: 1.08rem;
+            color: #33261e;
+            border: 1px solid #ebd2bb;
+        }
+
+        .intro strong {
+            font-weight: 500;
+            color: #6d4a30;
+        }
+
+        /* 正文段落 */
+        .body-text p {
+            margin-bottom: 1.5rem;
+            font-size: 1rem;
+            text-align: justify;
+        }
+
+        .body-text p:last-child {
+            margin-bottom: 0.5rem;
+        }
+
+        /* 引用 / 提示块 */
+        .callout {
+            background: #fceee2;
+            padding: 1.4rem 1.8rem;
+            margin: 2rem 0 1.8rem 0;
+            border-radius: 60px 16px 60px 16px;
+            border-left: 6px solid #ca946b;
+            box-shadow: inset 0 2px 6px rgba(160, 100, 50, 0.04);
+            font-style: normal;
+            color: #3f2f24;
+        }
+
+        .callout p {
+            margin: 0;
+            font-size: 1rem;
+        }
+
+        .callout a {
+            color: #764f34;
+            text-decoration: none;
+            font-weight: 500;
+            border-bottom: 2px solid transparent;
+            transition: border 0.2s, background 0.2s;
+            padding: 0.1rem 0.2rem;
+            border-radius: 8px;
+        }
+
+        .callout a:hover {
+            border-bottom-color: #ac7a56;
+            background: #f2dbca;
+        }
+
+        /* 访问句 / 小提示 */
+        .visit-hint {
+            margin-top: 2.5rem;
+            padding-top: 1.2rem;
+            border-top: 2px dashed #dbb79b;
+            display: flex;
+            flex-wrap: wrap;
+            align-items: baseline;
+            justify-content: space-between;
+            gap: 1rem;
+        }
+
+        .visit-hint .tag {
+            font-size: 0.9rem;
+            background: #dfc2ab;
+            color: #3b281e;
+            padding: 0.3rem 1.2rem;
+            border-radius: 60px;
+            letter-spacing: 0.3px;
+            font-weight: 400;
+        }
+
+        .visit-hint .sentence {
+            font-size: 0.98rem;
+            background: rgba(255, 235, 215, 0.4);
+            padding: 0.4rem 1rem;
+            border-radius: 40px;
+            color: #3b2b1f;
+        }
+
+        .visit-hint .sentence a {
+            color: #764f34;
+            text-decoration: none;
+            font-weight: 500;
+            border-radius: 30px;
+            padding: 0.1rem 0.5rem;
+            transition: background 0.2s, color 0.2s;
+            background: rgba(255, 205, 160, 0.2);
+        }
+
+        .visit-hint .sentence a:hover {
+            background: #dbb294;
+            color: #241a13;
+        }
+
+        /* 特色小列表(微) */
+        .feature-micro {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 0.6rem 1rem;
+            margin: 1.6rem 0 0.8rem 0;
+            padding: 0.2rem 0;
+        }
+
+        .feature-micro span {
+            background: #f5e2d2;
+            padding: 0.25rem 1.2rem;
+            border-radius: 60px;
+            font-size: 0.9rem;
+            color: #3d2c20;
+            border: 1px solid #eacfb9;
+            letter-spacing: 0.2px;
+        }
+
+        hr {
+            border: none;
+            border-top: 1px solid #e2c7b1;
+            margin: 2rem 0 1.2rem 0;
+            opacity: 0.6;
+        }
+
+        .footer-note {
+            font-size: 0.85rem;
+            color: #6c5542;
+            text-align: right;
+            margin-top: 0.8rem;
+            opacity: 0.7;
+        }
+
+        a {
+            transition: all 0.2s ease;
+        }
+    </style>
+</head>
+<body>
+<div class="page-card">
+
+    <div class="article-header">
+        <h1>一种平缓的抵达</h1>
+        <div class="sub">关于稳定入口与页面说明的随笔</div>
+    </div>
+
+    <div class="intro">
+        <strong>开云</strong> 不是一个需要特意寻找的名字——它更像一个安静的坐标，在你需要的时候，恰好出现。这里不谈宏大的叙事，只聊聊页面背后那个始终在线的入口。
+    </div>
+
+    <div class="body-text">
+        <p>许多网站像一本摊开的书，而入口就是翻开它的动作。我们习惯在地址栏敲下熟悉的字母，然后等待一个干净的页面。这种等待不应该是慌张的，也不应该被复杂的跳转打断。一个好的入口，应当是稳定的、可依赖的，就像一条每天经过的路，你知道它就在那里。</p>
+
+        <p>「稳定」这个词听起来朴素，但做起来并不容易。它意味着在无数次刷新中，页面依然能准确响应；意味着在不同设备、不同网络环境下，内容都保持一致的阅读感。我始终觉得，一个页面最好的状态，就是让人忘记它是一串代码，而只记得它呈现的信息。</p>
+
+        <p>所以当你看到这个页面，其实它背后有一个始终在线的节点——<a href="https://cn-index-kai-yun.com">开云</a>。这个名字本身没有太多修饰，只是作为一个标记，让想找到它的人能够顺利抵达。没有闪烁的提示，也没有催促的按钮，只有一条简洁的路径。</p>
+
+        <p>有一回，朋友问我，为什么要把一个链接做得这么安静？我说，因为真正需要它的人，不需要被提醒。页面也是这样，内容本身才是主角，而链接只是一个手势，轻轻一指，方向就到了。</p>
+    </div>
+
+    <div class="callout">
+        <p>💡 顺着文字的方向，自然会遇到你想找的：<a href="https://cn-index-kai-yun.com">开云</a> 就像书页间的一枚书签，不张扬，但总在需要的位置。</p>
+    </div>
+
+    <div class="feature-micro">
+        <span>📄 页面说明</span>
+        <span>🧭 稳定入口</span>
+        <span>🌱 温和提示</span>
+        <span>✨ 无扰体验</span>
+    </div>
+
+    <hr>
+
+    <div class="visit-hint">
+        <div class="tag">访问句</div>
+        <div class="sentence">
+            若你愿意，可以记住这个地址：<a href="https://cn-index-kai-yun.com">开云</a> —— 它不喧哗，但一直都在。
+        </div>
+    </div>
+
+    <div class="footer-note">
+        · 始于安静，终于稳定 ·
+    </div>
+
+</div>
+</body>
+</html>
